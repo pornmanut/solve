@@ -44,7 +44,7 @@ Node *tree::createNode(int key)
 
 void tree::insert(int key, Node *leaf)
 {
-    if (key < leaf->key)
+    if (key <= leaf->key)
     {
         leaf->value += 1; //store new node
         if (leaf->left)   //root != NULL
@@ -93,9 +93,16 @@ int tree::countMoreThan(int key, Node *leaf)
         else
             return 1 + countMoreThan(key, leaf->left);
     }
-    else if (key >= leaf->key)
+    else if (key > leaf->key)
     {
         return countMoreThan(key, leaf->right);
+    }
+    else if (key == leaf->key)
+    {
+        if (leaf->right) //leaf->right != NULL
+            return leaf->right->value;
+        else
+            return 0;
     }
     cout << "you should not been here!!!" << endl;
 }
