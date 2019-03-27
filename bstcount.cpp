@@ -132,23 +132,23 @@ int Number(char *str)
 }
 int main(int argc, char *argv[])
 {
+    /**
+     *  programs that search value that more than key that you insert in first arugment
+     *  next arugment will be set of number that we will search
+     **/
 
-    if (argc == 2)
+    if (argc >= 3)
     {
         int value = Number(argv[1]);
         tree *t = new tree();
 
-        t->insert(5);
-        t->insert(3);
-        t->insert(1);
-        t->insert(10);
-        t->insert(30);
-        t->insert(15);
-        t->insert(2);
-        t->insert(-1);
-        t->insert(300);
-        t->insert(150);
-        t->insert(75);
+        cout << "input: ";
+        for (int i = 2; i < argc; i++)
+        {
+            cout << argv[1] << ',';
+            t->insert(Number(argv[i]));
+        }
+        cout << endl;
 
         cout << "x > " << value << endl;
         t->inorder();
@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        cout << "request ./bstcount {value}" << endl;
+        cout << "request ./bstcount {value} {set of number}" << endl;
         return 1;
     }
     tree *t = new tree();
