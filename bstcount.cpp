@@ -48,44 +48,33 @@ void tree::insert(int key, Node *leaf)
     {
         leaf->value += 1; //store new node
         if (leaf->left)   //root != NULL
-        {
             insert(key, leaf->left);
-        }
         else
-        {
             leaf->left = createNode(key);
-        }
     }
     else
     {
         leaf->value += 1;
         if (leaf->right) //root != NULL
-        {
             insert(key, leaf->right);
-        }
         else
-        {
             leaf->right = createNode(key);
-        }
     }
 }
+
 void tree::insert(int key)
 {
     if (root) //root != NULL
-    {
         insert(key, root);
-    }
     else
-    {
         root = createNode(key);
-    }
 }
+
 int tree::countMoreThan(int key, Node *leaf)
 {
     if (!leaf) //leaf == NULL;
-    {
         return 0;
-    }
+
     else if (key < leaf->key)
     {
         if (leaf->right) //leaf->right != NULL
@@ -93,10 +82,10 @@ int tree::countMoreThan(int key, Node *leaf)
         else
             return 1 + countMoreThan(key, leaf->left);
     }
+
     else if (key > leaf->key)
-    {
         return countMoreThan(key, leaf->right);
-    }
+
     else if (key == leaf->key)
     {
         if (leaf->right) //leaf->right != NULL
